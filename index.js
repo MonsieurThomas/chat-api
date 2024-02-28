@@ -136,10 +136,13 @@ const wss = new ws.WebSocketServer({server});
 wss.on('connection', (connection, req) => {
 
   function notifyAboutOnlinePeople() {
-    [...wss.clients].forEach(client => {
-      client.send(JSON.stringify({
-        online: [...wss.clients].map(c => ({userId:c.userId,username:c.username})),
-      }));
+    const onlineUsers = Array.from(wss.clients).map(client => ({
+      userId: client.userId,
+      username: client.username
+    }));
+    const message = JSON.stringify({ online: onlineUsers });
+    wss.clients.forEach(client => {
+      client.send(message);
     });
   }
 
