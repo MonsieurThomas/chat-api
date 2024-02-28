@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
   origin: CLIENT_URL,
-  credentials: true,
+  credentials: true, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -121,7 +121,7 @@ app.post('/register', async (req,res) => {
   }
 });
 
-const server = app.listen(4040);
+const server = app.listen(4041);
 
 const wss = new ws.WebSocketServer({server});
 wss.on('connection', (connection, req) => {
