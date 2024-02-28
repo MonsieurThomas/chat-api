@@ -16,14 +16,13 @@ mongoose.connect(process.env.MONGO_URL, (err) => {
 });
 const jwtSecret = process.env.JWT_SECRET;
 const bcryptSalt = bcrypt.genSaltSync(10);
-const CLIENT_URL = process.env.CLIENT_URL
 
 const app = express();
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: CLIENT_URL,
+  origin: "https://incomparable-banoffee-a53c6c.netlify.app",
   credentials: true, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
