@@ -22,7 +22,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: "https://incomparable-banoffee-a53c6c.netlify.app",
+  origin: "*",
   credentials: true, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -131,7 +131,6 @@ app.post('/register', async (req,res) => {
 const port = process.env.PORT || 4041; 
 
 const server = app.listen(port);
-
 const wss = new ws.WebSocketServer({server});
 wss.on('connection', (connection, req) => {
 
